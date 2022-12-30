@@ -51,7 +51,7 @@ namespace passwordValidator
             var passwordValidator = new PasswordValidator();
             var validationResult = passwordValidator.Validate("123Abcde");
             Assert.False(validationResult.Passed);
-            Assert.Equal("password must contain at least one capital letter", validationResult.Message);
+            Assert.Equal("password must contain at least one special character", validationResult.Message);
 
         }
         

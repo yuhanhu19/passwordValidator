@@ -29,15 +29,10 @@ namespace passwordValidator
 
             if (password.All(char.IsLetterOrDigit))
             {
-                errors.Add("password must contain at least one capital letter");
+                errors.Add("password must contain at least one special character");
             }
 
-            if (!errors.Any())
-            {
-                return new ValidationResult(true, "");
-            }
-
-            return new ValidationResult(false, string.Join("\n", errors));
+            return !errors.Any() ? new ValidationResult(true, "") : new ValidationResult(false, string.Join("\n", errors));
         }
         
         private int CountNumbersInPassword(string password)
