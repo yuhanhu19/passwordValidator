@@ -24,5 +24,15 @@ namespace passwordValidator
             Assert.Equal("The password must contain at least 2 numbers", validationResult.Message);
 
         }
+        
+        [Fact]
+        public void ShouldReturnMultipleErrorsWhenHappen()
+        {
+            var passwordValidator = new PasswordValidator();
+            var validationResult = passwordValidator.Validate("abc1");
+            Assert.False(validationResult.Passed);
+            Assert.Equal("Password must be at least 8 characters\nThe password must contain at least 2 numbers", validationResult.Message);
+
+        }
     }
 }
