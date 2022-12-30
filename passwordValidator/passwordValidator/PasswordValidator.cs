@@ -11,6 +11,10 @@ namespace passwordValidator
         public ValidationResult Validate(string password)
         {
             IList<string> errors = new List<string>();
+            if (string.IsNullOrEmpty(password))
+            {
+                errors.Add("Password cannot be empty");
+            }
 
             if (password.Length < 8)
             {
