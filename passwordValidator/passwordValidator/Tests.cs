@@ -34,5 +34,15 @@ namespace passwordValidator
             Assert.Equal("Password must be at least 8 characters\nThe password must contain at least 2 numbers", validationResult.Message);
 
         }
+        
+        [Fact]
+        public void ShouldReturnErrorWhenPasswordContainsNoCapitalLetter()
+        {
+            var passwordValidator = new PasswordValidator();
+            var validationResult = passwordValidator.Validate("123abcde");
+            Assert.False(validationResult.Passed);
+            Assert.Equal("password must contain at least one capital letter", validationResult.Message);
+
+        }
     }
 }
