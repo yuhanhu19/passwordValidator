@@ -34,7 +34,7 @@ namespace passwordValidator
 
             if (!errors.Any())
             {
-                return new ValidationResult(true, "none");
+                return new ValidationResult(true, "");
             }
 
             return new ValidationResult(false, string.Join("\n", errors));
