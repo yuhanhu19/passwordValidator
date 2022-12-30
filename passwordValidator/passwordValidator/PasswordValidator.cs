@@ -10,18 +10,24 @@ namespace passwordValidator
     {
         public ValidationResult Validate(string password)
         {
+            IList<string> errors = new List<string>();
+
             if (password.Length < 8)
             {
-                return new ValidationResult(false, "Password must be at least 8 characters");
+                errors.Add("Password must be at least 8 characters");
             }
 
             if (CountNumbersInPassword(password) < 2)
             {
-                return new ValidationResult(false, "The password must contain at least 2 numbers");
-
+                errors.Add("The password must contain at least 2 numbers");
             }
 
-            return new ValidationResult(true, "none");
+            if (!errors.Any())
+            {
+                return new ValidationResult(true, "none");
+            }
+
+            return new ValidationResult(false, string.Join("\n", errors));
         }
 
         private int CountNumbersInPassword(string password)
