@@ -24,12 +24,14 @@ namespace passwordValidator
         }
 
         [Fact]
-        public void ShouldReturnMultipleErrorsWhenHappen()
+        public void ShouldReturnErrorsGivenEmptyPassword()
         {
             var passwordValidator = new PasswordValidator();
-            var validationResult = passwordValidator.Validate("Abc1%");
+            var validationResult = passwordValidator.Validate("");
             Assert.False(validationResult.Passed);
-            Assert.Equal("Password must be at least 8 characters\nThe password must contain at least 2 numbers",
+            Assert.Equal("Password cannot be empty\nPassword must be at least 8 characters\nThe password must " +
+                         "contain at least 2 numbers\npassword must contain at least one capital letter\npassword must " +
+                         "contain at least one special character",
                 validationResult.Message);
         }
 
